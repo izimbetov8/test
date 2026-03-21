@@ -214,21 +214,6 @@ function showResult(r, alreadyDone) {
     }
 }
 
-document.onkeydown = function(e) {
-    // 123 - F12
-    // 73 - I (Ctrl+Shift+I)
-    // 74 - J (Ctrl+Shift+J)
-    // 85 - U (Ctrl+U)
-    
-    if (e.keyCode == 123 || 
-        (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
-        (e.ctrlKey && e.keyCode == 85)) {
-        
-        // Егер бұл комбинациялар басылса, әрекетті тоқтату
-        e.preventDefault();
-        return false;
-    }
-};
 window.onblur = function() {
     if(document.getElementById('s-test').classList.contains('hidden') || isFinished || localStorage.getItem('quiz_result')) return;
     viol++; document.getElementById('v-c').innerText = viol; saveState();
