@@ -213,21 +213,7 @@ function showResult(r, alreadyDone) {
         document.getElementById('r-v').innerText = (r.L_final === 'kz' ? "Айыппұл: " : "Штраф: ") + r.penalty + " (" + (r.L_final === 'kz' ? "Бұзушылық: " : "Нарушений: ") + r.viol + ")";
     }
 }
-document.onkeydown = function(e) {
-    // 123 - F12
-    // 73 - I (Ctrl+Shift+I)
-    // 74 - J (Ctrl+Shift+J)
-    // 85 - U (Ctrl+U)
-    
-    if (e.keyCode == 123 || 
-        (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
-        (e.ctrlKey && e.keyCode == 85)) {
-        
-        // Егер бұл комбинациялар басылса, әрекетті тоқтату
-        e.preventDefault();
-        return false;
-    }
-};
+
 window.onblur = function() {
     if(document.getElementById('s-test').classList.contains('hidden') || isFinished || localStorage.getItem('quiz_result')) return;
     viol++; document.getElementById('v-c').innerText = viol; saveState();
@@ -235,6 +221,21 @@ window.onblur = function() {
     let msg = (viol === 1) ? ui[L].v1 : (viol === 2 ? ui[L].v2 : ui[L].v3 + p);
     alert(msg);
 }
+
+document.addEventListener('keydown', function(e) {
+    // 1. F12 (keyCode 123)
+    // 2. Ctrl + Shift + I (73) / J (74) / C (67)
+    // 3. Ctrl + U (85)
+    if (
+        e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+        (e.ctrlKey && e.keyCode === 85)
+    ) {
+        e.preventDefault();
+        return false;
+    }
+}, false);
+    
 </script>
 </body>
 </html>
