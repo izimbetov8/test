@@ -132,7 +132,21 @@
             width: 18px; /* Кішірейтілген ұшақ */
             height: 18px; 
             stroke-width: 1.5; /* Жіңішке сызық */
-        }
+
+            /* Бүкіл сайтта мәтінді белгілеуге тыйым салу */
+            body {
+                -webkit-user-select: none;  /* Chrome, Safari, Opera */
+                -moz-user-select: none;     /* Firefox */
+                -ms-user-select: none;      /* Internet Explorer/Edge */
+                user-select: none;          /* Standard */
+            }
+            
+            /* Батырмалар мен сілтемелер үшін де қауіпсіздік */
+            .btn, .wa-link, h3, h5, div {
+                -webkit-user-drag: none;    /* Суреттер мен элементтерді тартуға тыйым салу */
+                user-select: none;
+            }
+                    }
     </style>
 </head>
 <body>
@@ -239,6 +253,14 @@
     };
     
 </script>
-
+        // Мәтінді белгілеу басталғанда оны тоқтату
+            document.onselectstart = function() {
+                return false;
+            };
+        
+            // Суреттер мен элементтерді тышқанмен сүйреп апаруға тыйым салу
+            document.ondragstart = function() {
+                return false;
+            };
 </body>
 </html>
