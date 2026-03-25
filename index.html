@@ -214,6 +214,29 @@
         // Ctrl+C (Көшіру)
         if (e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
     };
+
+    // 4. Алмасу буферін (Copy) бұғаттау
+    document.addEventListener('copy', function(e) {
+        e.clipboardData.setData('text/plain', 'Көшіруге тыйым салынған! / Копирование запрещено!');
+        e.preventDefault();
+    });
+
+    // 5. PrintScreen басылғанда хабарлама шығару (немесе буферді тазалау)
+    window.addEventListener('keyup', function(e) {
+        if (e.key === 'PrintScreen') {
+            navigator.clipboard.writeText(''); // Буферді өшіру
+            alert('Скриншот жасауға тыйым салынады! / Скриншоты запрещены!');
+        }
+    });
+
+    // 6. Фокустан шыққанда (басқа терезеге өткенде) экранды жасыру әрекеті
+    /* Бұл функция пайдаланушы скриншот бағдарламасын ашқанда көмектесуі мүмкін */
+    window.onblur = function() {
+        document.body.style.filter = "blur(15px)";
+    };
+    window.onfocus = function() {
+        document.body.style.filter = "none";
+    };
     
 </script>
 
