@@ -176,6 +176,7 @@
 </div>
 
 <script>
+    // 1. Құпиясөзді тексеру функциясы
     function checkAccess(event, correctPassword) {
         const userPass = prompt("Құпиясөзді енгізіңіз / Введите пароль:");
         
@@ -187,6 +188,33 @@
             return false;
         }
     }
+
+    // 2. Оң жақ батырманы блоктау (Контекстік мәзір)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // 3. Ыстық пернелерді блоктау (Ctrl+C, Ctrl+U, F12, т.б.)
+    document.onkeydown = function(e) {
+        // F12 (Инспекция)
+        if (e.keyCode == 123) return false;
+        
+        // Ctrl+Shift+I (Инспекция)
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+        
+        // Ctrl+Shift+J (Консоль)
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+        
+        // Ctrl+U (Кодты көру)
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        
+        // Ctrl+S (Сайтты сақтау)
+        if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
+
+        // Ctrl+C (Көшіру)
+        if (e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+    };
+    
 </script>
 
 </body>
